@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Airports</string>
+    <string name="display_name">Airports</string>
+    <string name="action_settings">Settings</string>
+    <string name="SearchText">Enter airport search text</string>
+    <string name="SearchButton">Search</string>
+    <string name="AirportsFilename">Airports.txt</string>
+
+    <string name="AirportNameLabel">Name</string>
+    <string name="AirportCityLabel">City</string>
+    <string name="AirportStateLabel">State</string>
+    <string name="AirportLatLonLabel">Lat/Lon</string>
+    <string name="AirportElevLabel">Elevation</string>
+    <string name="AirportRunwayLabel">Rwy Len</string>
+    <string name="AirportMagVarLabel">Mag Var</string>
+    <string name="AirportDistLabel">Bearing</string>
+
+    <string name="MapButton">Show Map</string>
+    <string name="EarthButton">Show Earth</string>
+    <string name="AirNavButton">Show AirNav</string>
+</resources>

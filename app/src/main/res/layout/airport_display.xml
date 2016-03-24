@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_search">
+
+    <TextView
+        android:id="@+id/AirportID"
+        style="@style/AirportID"/>
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:fillViewport="true"
+        android:measureAllChildren="false">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AirportID">
+
+            <TableRow style="@style/AirportDisplayTableRow">
+                 <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportNameLabel"/>
+                <TextView
+                    android:id="@+id/AirportName"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow">
+               <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportCityLabel"/>
+                <TextView
+                    android:id="@+id/AirportCity"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportStateLabel"/>
+                <TextView
+                    android:id="@+id/AirportState"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportLatLonLabel"/>
+                <TextView
+                    android:id="@+id/AirportLatLon"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/ElevRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportElevLabel"/>
+                <TextView
+                    android:id="@+id/AirportElev"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/RunwayRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportRunwayLabel"/>
+                <TextView
+                    android:id="@+id/AirportRwy"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/VarRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportMagVarLabel"/>
+                <TextView
+                    android:id="@+id/AirportVar"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/DistRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportDistLabel"/>
+                <TextView
+                    android:id="@+id/AirportDist"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </HorizontalScrollView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:gravity="center">
+
+        <Button
+            style="@style/MapButton"/>
+        <Button
+            style="@style/EarthButton"/>
+        <Button
+            style="@style/AirNavButton"/>
+
+    </LinearLayout>
+
+</LinearLayout>
