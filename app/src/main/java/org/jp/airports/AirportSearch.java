@@ -144,6 +144,12 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         }
     }
 
+    public void clear(View view) {
+        EditText searchText = (EditText) findViewById(R.id.SearchText);
+        searchText.setText("");
+        search(view);
+    }
+
     class SearchTextWatcher implements TextWatcher {
         public SearchTextWatcher() { }
         public void beforeTextChanged(CharSequence s, int start, int count, int after) { }

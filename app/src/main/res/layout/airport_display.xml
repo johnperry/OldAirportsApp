@@ -80,15 +80,6 @@
                     style="@style/TableRowData"/>
             </TableRow>
 
-            <TableRow style="@style/AirportDisplayTableRow"
-                android:id="@+id/VarRow">
-                <TextView
-                    style="@style/TableRowLabel"
-                    android:text="@string/AirportMagVarLabel"/>
-                <TextView
-                    android:id="@+id/AirportVar"
-                    style="@style/TableRowData"/>
-            </TableRow>
 
             <TableRow style="@style/AirportDisplayTableRow"
                 android:id="@+id/DistRow">
@@ -100,6 +91,35 @@
                     style="@style/TableRowData"/>
             </TableRow>
 
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/TrueBearingRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportTrueBearingLabel"/>
+                <TextView
+                    android:id="@+id/AirportTrueBearing"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/MagBearingRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportMagBearingLabel"/>
+                <TextView
+                    android:id="@+id/AirportMagBearing"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/VarRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportMagVarLabel"/>
+                <TextView
+                    android:id="@+id/AirportVar"
+                    style="@style/TableRowData"/>
+            </TableRow>
         </TableLayout>
 
     </HorizontalScrollView>

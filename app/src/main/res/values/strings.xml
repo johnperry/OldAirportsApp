@@ -3,7 +3,7 @@
     <string name="display_name">Airports</string>
     <string name="action_settings">Settings</string>
     <string name="SearchText">Enter airport search text</string>
-    <string name="SearchButton">Search</string>
+    <string name="SearchButton">Clear</string>
     <string name="AirportsFilename">Airports.txt</string>
 
     <string name="AirportNameLabel">Name</string>
@@ -13,7 +13,9 @@
     <string name="AirportElevLabel">Elevation</string>
     <string name="AirportRunwayLabel">Rwy Len</string>
     <string name="AirportMagVarLabel">Mag Var</string>
-    <string name="AirportDistLabel">Bearing</string>
+    <string name="AirportDistLabel">Distance</string>
+    <string name="AirportTrueBearingLabel">Bearing (T)</string>
+    <string name="AirportMagBearingLabel">Bearing (M)</string>
 
     <string name="MapButton">Show Map</string>
     <string name="EarthButton">Show Earth</string>

@@ -17,8 +17,10 @@ public class Airport implements Comparable<Airport> {
     public String elev = "";
     public String rwy = "";
     public String var = "";
+    public double dvar = 0.0;
     public double dist = 0.0;
-    public double brng = 0.0;
+    public double trueBrng = 0.0;
+    public double magBrng = 0.0;
 
     private String airportText;
 
@@ -37,7 +39,11 @@ public class Airport implements Comparable<Airport> {
                     break;
                 case 5: this.elev = ap[5]; break;
                 case 6: this.rwy = ap[6]; break;
-                case 7: this.var = ap[7]; break;
+                case 7:
+                    this.var = ap[7];
+                    try { dvar = Double.parseDouble(this.var); }
+                    catch (Exception ex) { dvar = 0.0; }
+                    break;
             }
         }
         this.airportText = (id +"|"+name+"|"+city+"|"+state+"|").toLowerCase();
@@ -61,7 +67,8 @@ public class Airport implements Comparable<Airport> {
 
     public void setDistanceFrom(Location location) {
         dist = getDistanceFrom(location);
-        brng = getBearingFrom(location);
+        trueBrng = getBearingFrom(location);
+        magBrng = trueBrng + dvar;
     }
 
     public double getDistanceFrom(Location location) {

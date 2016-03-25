@@ -27,7 +27,13 @@ public class AirportDisplay extends AppCompatActivity {
 
         String latlon = String.format("(%.3f, %.3f)", airport.lat, airport.lon);
         String dist = (airport.dist >= 0.0) ?
-                String.format("%.1f nm @ %.0f°", airport.dist, airport.brng)
+                String.format("%.1f nm", airport.dist)
+                : null;
+        String trueBrng = (airport.dist >= 0.0) ?
+                String.format("%.0f°", airport.trueBrng)
+                : null;
+        String magBrng = (airport.dist >= 0.0) ?
+                String.format("%.0f°", airport.magBrng)
                 : null;
 
         setText(R.id.AirportID, airport.id);
@@ -39,6 +45,8 @@ public class AirportDisplay extends AppCompatActivity {
         setText(R.id.AirportRwy, airport.rwy, " ft", R.id.RunwayRow);
         setText(R.id.AirportVar, airport.var, "°", R.id.VarRow);
         setText(R.id.AirportDist, dist, "", R.id.DistRow);
+        setText(R.id.AirportTrueBearing, trueBrng, "", R.id.TrueBearingRow);
+        setText(R.id.AirportMagBearing, magBrng, "", R.id.MagBearingRow);
      }
 
     private void setText(int id, String text, String units, int rowID) {
