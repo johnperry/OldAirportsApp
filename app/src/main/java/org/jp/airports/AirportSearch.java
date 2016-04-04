@@ -79,10 +79,7 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     private boolean hasLocationPermission() {
         int fine = ActivityCompat.checkSelfPermission(
                             this, Manifest.permission.ACCESS_FINE_LOCATION);
-        int coarse = ActivityCompat.checkSelfPermission(
-                            this, Manifest.permission.ACCESS_FINE_LOCATION);
-        return (fine == PackageManager.PERMISSION_GRANTED) &&
-                     (coarse == PackageManager.PERMISSION_GRANTED);
+        return (fine == PackageManager.PERMISSION_GRANTED);
     }
 
     public void onLocationChanged(Location location) {
