@@ -56,8 +56,10 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     @Override
     protected void onStart() {
         super.onStart();
-        if (hasLocationPermission()) {
+        if (ActivityCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     3000,   // 3 sec
@@ -76,14 +78,8 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         }
     }
 
-    private boolean hasLocationPermission() {
-        int fine = ActivityCompat.checkSelfPermission(
-                            this, Manifest.permission.ACCESS_FINE_LOCATION);
-        return (fine == PackageManager.PERMISSION_GRANTED);
-    }
-
     public void onLocationChanged(Location location) {
-        this.location = location;
+        if (location != null) this.location = location;
     }
     public void onProviderDisabled(String provider) {
         Toast.makeText(getBaseContext(), "GPS disabled", Toast.LENGTH_LONG);
