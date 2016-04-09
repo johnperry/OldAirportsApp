@@ -81,7 +81,7 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
     @Override
     protected void onStart() {
         super.onStart();
-        if (ActivityCompat.checkSelfPermission( this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -102,10 +102,12 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
     }
 
     public void onLocationChanged(Location location) {
-        this.location = location;
-         if (airport != null) {
-            airport.setDistanceFrom(location);
-            displayLocationParams();
+        if (location != null) {
+            this.location = location;
+            if (airport != null) {
+                airport.setDistanceFrom(location);
+                displayLocationParams();
+            }
         }
     }
     public void onProviderDisabled(String provider) { }
