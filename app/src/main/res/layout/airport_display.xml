@@ -12,12 +12,13 @@
         android:id="@+id/AirportID"
         style="@style/AirportID"/>
 
-    <HorizontalScrollView
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentTop="false"
         android:fillViewport="true"
-        android:measureAllChildren="false">
+        android:measureAllChildren="false"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -121,25 +122,22 @@
                     style="@style/TableRowData"/>
             </TableRow>
         </TableLayout>
-
-    </HorizontalScrollView>
+    </ScrollView>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:gravity="center">
-
-        <Button
-            style="@style/MapButton"/>
-        <Button
-            style="@style/EarthButton"/>
-        <Button
-            style="@style/AirNavButton"/>
-
-    </LinearLayout>
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:gravity="center">
+            <Button
+                style="@style/MapButton"/>
+            <Button
+                style="@style/EarthButton"/>
+            <Button
+                style="@style/AirNavButton"/>
+        </LinearLayout>
 
 </LinearLayout>
