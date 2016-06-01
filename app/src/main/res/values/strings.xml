@@ -13,9 +13,13 @@
     <string name="AirportElevLabel">Elevation</string>
     <string name="AirportRunwayLabel">Rwy Len</string>
     <string name="AirportMagVarLabel">Mag Var</string>
+    <string name="AirportWMMDecLabel">WMM Dec</string>
     <string name="AirportDistLabel">Distance</string>
     <string name="AirportTrueBearingLabel">Bearing (T)</string>
     <string name="AirportMagBearingLabel">Bearing (M)</string>
+    <string name="CurrentLocationLatLonLabel">Lat/Lon</string>
+    <string name="CurrentLocationWMMDecLabel">WMM Dec</string>
+    <string name="CurrentLocationAltitudeLabel">WMM Altitude</string>
 
     <string name="MapButton">Show Map</string>
     <string name="EarthButton">Show Earth</string>

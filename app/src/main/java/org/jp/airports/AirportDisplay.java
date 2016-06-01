@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.GeomagneticField;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 /**
  * Created by John on 3/21/2016.
@@ -35,6 +38,7 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
         this.airport = db.getAirport(airportID);
 
         String latlon = String.format("(%.3f, %.3f)", airport.lat, airport.lon);
+        String wmmvar = String.format("%.1f", airport.getWMMMagneticDeclination());
 
         setText(R.id.AirportID, airport.id);
         setText(R.id.AirportName, airport.name);
@@ -44,6 +48,7 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
         setText(R.id.AirportLatLon, latlon);
         setText(R.id.AirportRwy, airport.rwy, " ft", R.id.RunwayRow);
         setText(R.id.AirportVar, airport.var, "°", R.id.VarRow);
+        setText(R.id.AirportWMMDec, wmmvar, "°", R.id.AirportWMMDecRow);
         displayLocationParams();
     }
 
@@ -52,14 +57,36 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
                 String.format("%.1f", airport.dist)
                 : null;
         String trueBrng = (airport.dist >= 0.0) ?
-                String.format("%.0f", airport.trueBrng)
+                String.format("%03.0f", airport.trueBrng)
                 : null;
         String magBrng = (airport.dist >= 0.0) ?
-                String.format("%.0f", airport.magBrng)
+                String.format("%03.0f", airport.magBrng)
                 : null;
+
         setText(R.id.AirportDist, dist, " nm", R.id.DistRow);
         setText(R.id.AirportTrueBearing, trueBrng, "°", R.id.TrueBearingRow);
         setText(R.id.AirportMagBearing, magBrng, "°", R.id.MagBearingRow);
+
+        String latlon = (location != null) ?
+                String.format("(%.3f, %.3f)", location.getLatitude(), location.getLongitude())
+                : null;
+        String wmmdec =  (location != null) ?
+                String.format("%.1f", Airport.getWMMMagneticDeclination(location))
+                : null;
+        String altitude =  (location != null) ?
+                String.format("%.0f", location.getAltitude() * 39.37/12)
+                : null;
+
+        View titleRow = (View)findViewById(R.id.CurrentLocationTitleRow);
+        if (location == null) {
+            titleRow.setVisibility(View.GONE);
+        }
+        else {
+            titleRow.setVisibility(View.VISIBLE);
+        }
+        setText(R.id.CurrentLocationLatLon, latlon, "", R.id.CurrentLocationLatLonRow);
+        setText(R.id.CurrentLocationWMMDec, wmmdec, "°", R.id.CurrentLocationWMMDecRow);
+        setText(R.id.CurrentLocationAltitude, altitude, " ft", R.id.CurrentLocationAltitudeRow);
     }
 
     private void setText(int id, String text, String units, int rowID) {

@@ -81,7 +81,6 @@
                     style="@style/TableRowData"/>
             </TableRow>
 
-
             <TableRow style="@style/AirportDisplayTableRow"
                 android:id="@+id/DistRow">
                 <TextView
@@ -121,23 +120,69 @@
                     android:id="@+id/AirportVar"
                     style="@style/TableRowData"/>
             </TableRow>
+
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/AirportWMMDecRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/AirportWMMDecLabel"/>
+                <TextView
+                    android:id="@+id/AirportWMMDec"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
+            <!--Current location-->
+            <TableRow
+                android:id="@+id/CurrentLocationTitleRow">
+                <TextView
+                    style="@style/CurrentLocationTitle"
+                    android:text="Current Location"/>
+            </TableRow>
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/CurrentLocationLatLonRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/CurrentLocationLatLonLabel"/>
+                <TextView
+                    android:id="@+id/CurrentLocationLatLon"
+                    style="@style/TableRowData"/>
+            </TableRow>
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/CurrentLocationWMMDecRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/CurrentLocationWMMDecLabel"/>
+                <TextView
+                    android:id="@+id/CurrentLocationWMMDec"
+                    style="@style/TableRowData"/>
+            </TableRow>
+            <TableRow style="@style/AirportDisplayTableRow"
+                android:id="@+id/CurrentLocationAltitudeRow">
+                <TextView
+                    style="@style/TableRowLabel"
+                    android:text="@string/CurrentLocationAltitudeLabel"/>
+                <TextView
+                    android:id="@+id/CurrentLocationAltitude"
+                    style="@style/TableRowData"/>
+            </TableRow>
+
         </TableLayout>
     </ScrollView>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:gravity="center">
-            <Button
-                style="@style/MapButton"/>
-            <Button
-                style="@style/EarthButton"/>
-            <Button
-                style="@style/AirNavButton"/>
-        </LinearLayout>
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:gravity="center">
+        <Button
+            style="@style/MapButton"/>
+        <Button
+            style="@style/EarthButton"/>
+        <Button
+            style="@style/AirNavButton"/>
+    </LinearLayout>
 
 </LinearLayout>

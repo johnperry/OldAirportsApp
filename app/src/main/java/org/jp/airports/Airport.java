@@ -1,7 +1,10 @@
 package org.jp.airports;
 
+import android.hardware.GeomagneticField;
 import android.location.Location;
 import android.util.Log;
+
+import java.util.Calendar;
 
 /**
  * Created by John on 3/19/2016.
@@ -67,8 +70,8 @@ public class Airport implements Comparable<Airport> {
 
     public void setDistanceFrom(Location location) {
         dist = getDistanceFrom(location);
-        trueBrng = getBearingFrom(location);
-        magBrng = trueBrng + dvar;
+        trueBrng = getTrueBearingFrom(location);
+        magBrng = trueBrng + getWMMMagneticDeclination(location);
     }
 
     public double getDistanceFrom(Location location) {
@@ -82,13 +85,50 @@ public class Airport implements Comparable<Airport> {
         return -1.0;
     }
 
-    public double getBearingFrom(Location location) {
+    public double getTrueBearingFrom(Location location) {
         if (location != null) {
             V3 loc = new V3(location);
             V3 here = new V3(lat, lon);
             return loc.bearingTo(here);
         }
         return -1.0;
+    }
+
+    public double getMagneticBearingFrom(Location location) {
+        if (location != null) {
+            GeomagneticField gmf = new GeomagneticField(
+                    (float) location.getLatitude(),
+                    (float) location.getLongitude(),
+                    (float) location.getAltitude(),
+                    Calendar.getInstance().getTimeInMillis());
+            float localMagneticDeclination = gmf.getDeclination();
+            return getTrueBearingFrom(location) + localMagneticDeclination;
+        }
+        else return 0.0;
+    }
+
+    public static double getWMMMagneticDeclination(Location location) {
+        GeomagneticField gmf = new GeomagneticField(
+                (float)location.getLatitude(),
+                (float)location.getLongitude(),
+                (float)location.getAltitude(),
+                Calendar.getInstance().getTimeInMillis());
+        return gmf.getDeclination();
+    }
+
+    public double getWMMMagneticDeclination() {
+        try {
+            double elevInMeters = Double.parseDouble(elev) * 12/39.37;
+            GeomagneticField gmf = new GeomagneticField(
+                    (float) lat,
+                    (float) lon,
+                    (float) elevInMeters,
+                    Calendar.getInstance().getTimeInMillis());
+            return gmf.getDeclination();
+        }
+        catch (Exception ex) {
+            return 0.0;
+        }
     }
 
     public String toString() {
