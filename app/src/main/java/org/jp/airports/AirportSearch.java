@@ -68,6 +68,9 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new NearestListener());
         }
+        else Toast.makeText(getApplicationContext(),
+                "Cannot obtain permission for LocationManager", Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -105,7 +108,6 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -177,14 +179,16 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     }
 
     private void showResults(LinkedList<Airport> list) {
-        for (Airport ap : list) ap.setDistanceFrom(location);
+        if (location != null) {
+            for (Airport ap : list) ap.setDistanceFrom(location);
+        }
         Collections.sort(list);
         adapter.clear();
         adapter.addAll(list);
         int n = list.size();
         String result = (n > 0) ?
-                list.size() + " airports found" :
-                ((n == 1) ? "1 airport_display found" : "No airports found");
+                n + " airport" + ((n > 1) ? "s" : "") + " found" :
+                "No airports found";
         Context context = getApplicationContext();
         searchToast = Toast.makeText(context, result, Toast.LENGTH_SHORT);
         searchToast.show();
