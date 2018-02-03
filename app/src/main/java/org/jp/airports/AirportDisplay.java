@@ -115,7 +115,7 @@ public class AirportDisplay extends AppCompatActivity implements LocationListene
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     3000,   // 3 sec
-                    10,     //10 meter minimum change
+                    10, //10 meter minimum change
                     this);  //LocationListener
         }
     }

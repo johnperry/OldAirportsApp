@@ -17,4 +17,12 @@
         android:id="@+id/AirportListCityState"
         style="@style/AirportListCityState"/>
 
+    <TextView
+        android:id="@+id/AirportListBearing"
+        style="@style/AirportListBearing"/>
+
+    <TextView
+        android:id="@+id/AirportListDistance"
+        style="@style/AirportListDistance"/>
+
 </RelativeLayout>

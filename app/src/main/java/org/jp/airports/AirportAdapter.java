@@ -25,12 +25,24 @@ public class AirportAdapter extends ArrayAdapter<Airport> {
         View rowView = inflater.inflate(R.layout.airport_list, parent, false);
 
         Airport airport = getItem(position);
+
         TextView idView = (TextView) rowView.findViewById(R.id.AirportListID);
         idView.setText(airport.id);
+
         TextView nameView = (TextView) rowView.findViewById(R.id.AirportListName);
         nameView.setText(airport.name);
+
         TextView cityStateView = (TextView) rowView.findViewById(R.id.AirportListCityState);
         cityStateView.setText(airport.city + ", " + airport.state);
+
+        String magBrng = String.format("%03.0f°", airport.magBrng);
+        TextView bearingView = (TextView) rowView.findViewById(R.id.AirportListBearing);
+        bearingView.setText(magBrng);
+
+        String dist = String.format("%.1fnm", airport.dist);
+        TextView distView = (TextView) rowView.findViewById(R.id.AirportListDistance);
+        distView.setText(dist);
+
         return rowView;
     }
 }

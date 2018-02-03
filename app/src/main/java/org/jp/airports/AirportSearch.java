@@ -35,7 +35,7 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     AirportAdapter adapter;
     Toast searchToast = null;
     String lastSearch = "";
-
+    boolean nearestSearch = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +63,8 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     3000,   // 3 sec
-                    10,     //10 meter minimum change
-                    this);  //LocationListener
+                    100, //100 meter minimum change
+                    this);   //LocationListener
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             fab.setOnClickListener(new NearestListener());
         }
@@ -82,7 +82,12 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     }
 
     public void onLocationChanged(Location location) {
-        if (location != null) this.location = location;
+        if (location != null) {
+            this.location = location;
+            if (nearestSearch) {
+                search(location);
+            }
+        }
     }
     public void onProviderDisabled(String provider) {
         Toast.makeText(getBaseContext(), "GPS disabled", Toast.LENGTH_LONG);
@@ -129,6 +134,7 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         public void onClick(View view) {
             if (location != null) {
                 search(location);
+                nearestSearch = true;
             }
             else {
                 Toast.makeText(getApplicationContext(),
@@ -147,7 +153,10 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         public SearchTextWatcher() { }
         public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
         public void afterTextChanged(Editable s) {
-            if (s.length() > 1) search();
+            if (s.length() > 1) {
+                search();
+                nearestSearch = false;
+            }
         }
         public void onTextChanged(CharSequence s, int start, int before, int count) { }
     }
