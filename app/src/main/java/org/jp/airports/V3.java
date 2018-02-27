@@ -9,6 +9,7 @@ public class V3 {
     double x;
     double y;
     double z;
+    static V3 pole = new V3(0.0, 0.0, 1.0);
     public V3(double x, double y, double z) {
         this.x = x;
         this.y = y;
@@ -26,7 +27,8 @@ public class V3 {
     }
     public V3 normalize() {
         double len = length();
-        return scale(1.0/length());
+        if (len > 0.0) return scale(1.0/length());
+        else return new V3(0.0, 0.0, 0.0);
     }
     public V3 scale(double r) {
         return new V3(x * r, y * r, z * r);
@@ -39,10 +41,9 @@ public class V3 {
     }
     public double bearingTo(V3 dest) {
         V3 course = this.cross(dest).cross(this).normalize();
-        V3 north = this.cross(new V3(90.0, 0.0)).cross(this).normalize();
+        V3 north = this.cross(pole).cross(this).normalize();
         V3 east = north.cross(this);
-        double cos = course.dot(north);
-        double theta = Math.acos(cos);
+        double theta = Math.acos(course.dot(north));
         if (course.dot(east) < 0) theta = 2 * Math.PI - theta;
         return theta * 180.0 / Math.PI;
     }

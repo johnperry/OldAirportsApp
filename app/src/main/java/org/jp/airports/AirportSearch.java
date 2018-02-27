@@ -36,6 +36,7 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
     Toast searchToast = null;
     String lastSearch = "";
     boolean nearestSearch = false;
+    LinkedList<Airport> list = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,6 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         }
         else Toast.makeText(getApplicationContext(),
                 "Cannot obtain permission for LocationManager", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -86,6 +86,9 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
             this.location = location;
             if (nearestSearch) {
                 search(location);
+            }
+            else if (list != null) {
+                showResults(list, false);
             }
         }
     }
@@ -171,7 +174,7 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
         Context context = getApplicationContext();
         AirportsDB db = AirportsDB.getInstance(context);
         LinkedList<Airport> list = db.search(loc);
-        showResults(list);
+        showResults(list, true);
     }
 
     public void search() {
@@ -182,24 +185,26 @@ public class AirportSearch extends AppCompatActivity implements LocationListener
             lastSearch = text;
             Context context = getApplicationContext();
             AirportsDB db = AirportsDB.getInstance(context);
-            LinkedList<Airport> list = db.search(text);
-            showResults(list);
+            list = db.search(text);
+            showResults(list, true);
         }
     }
 
-    private void showResults(LinkedList<Airport> list) {
+    private void showResults(LinkedList<Airport> list, boolean showToast) {
         if (location != null) {
             for (Airport ap : list) ap.setDistanceFrom(location);
         }
         Collections.sort(list);
         adapter.clear();
         adapter.addAll(list);
-        int n = list.size();
-        String result = (n > 0) ?
-                n + " airport" + ((n > 1) ? "s" : "") + " found" :
-                "No airports found";
-        Context context = getApplicationContext();
-        searchToast = Toast.makeText(context, result, Toast.LENGTH_SHORT);
-        searchToast.show();
+        if (showToast) {
+            int n = list.size();
+            String result = (n > 0) ?
+                    n + " airport" + ((n > 1) ? "s" : "") + " found" :
+                    "No airports found";
+            Context context = getApplicationContext();
+            searchToast = Toast.makeText(context, result, Toast.LENGTH_SHORT);
+            searchToast.show();
+        }
     }
 }
